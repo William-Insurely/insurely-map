@@ -1,0 +1,106 @@
+*,
+*:after,
+*::before {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+// [1] Remove the blue flash when user clicks a link.
+// [2] Ensure the page always fills at least the entire height of the viewport.
+// [3] Prevent iOS text size adjust after orientation change, without disabling user zoom.
+// [4] Fonts on OSX will look more consistent with other systems that do not
+// 	   render text using sub-pixel anti-aliasing.
+// [5] Disable the 300ms click delay on some phones
+
+html, body {
+  margin: 0;
+	background-color: #fff;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
+
+	min-height: 100%; // [2]
+
+	-webkit-text-size-adjust: 100%; // [3]
+	-ms-text-size-adjust: 100%; // [3]
+
+	-webkit-font-smoothing: antialiased; // [4]
+  -webkit-font-smoothing: subpixel-antialiased;
+	-moz-osx-font-smoothing: grayscale; // [4]
+
+	touch-action: manipulation; // [5]
+
+  font-family: 'Nunito Sans';
+  font-size: 14px;
+  line-height: 20px;
+  color: $black;
+
+  @media (min-width: $breakpoint) {
+    font-size: 16px;
+    line-height: 23px;
+    -webkit-user-select: none;
+  }
+}
+
+iframe {
+  width: 100%;
+  border: none;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ol,
+ul {
+  padding-left: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $green;
+  font-weight: bold;
+}
+
+.green path {
+  fill: $green;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+.disable-link {
+  pointer-events: none;
+}
+
+.hide-on-mobile {
+  @media (max-width: $breakpoint - 1px) {
+    display: none;
+  }
+}
+
+.hide-on-desktop {
+  @media (min-width: $breakpoint) {
+    display: none;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,47 @@
+
+// Primary
+$green-lightest:                    rgba(#3fac88, 0.15);
+$green-light:                                   #7fe1bc;
+$green:                                         #3fac88;
+$green-dark:                                    #156258;
+
+$black:                                         #1a1f18;
+
+$grey-lightest:                                 #fafafa;
+$grey-light:                                    #e1e1e1;
+$grey:                                          #777777;
+$grey-dark:                                     #4d4d4d;
+$grey-darkest:                                  #333333;
+
+// Accent
+$blue-lightest:                                 #eef3f5;
+$blue-light:                   rgba(74, 131, 238, 0.15);
+$blue:                                          #4a83ee;
+$blue-dark:                                     #152946;
+
+// Funtional
+$red-light:                                     #ffc2bc;
+$red:                                           #ed5b39;
+$red-dark:                                      #af2e10;
+
+$yellow-light:                                  #fffbd9;
+$yellow:                                        #f9ec6c;
+$yellow-dark:                                   #d4c642;
+$yellow-darkest:                                #998b10;
+
+// Sizes
+$small-breakpoint:                                420px;
+$breakpoint:                                      769px;
+
+$content-max-width:                              1200px;
+$app-content-max-width:                           750px;
+$text-max-width:                                  760px;
+$header-height:                                    65px;
+$button-height:                                    48px;
+
+$border-radius:                                     4px;
+
+// $card-box-shadow:    0 1px 2px 0 rgba(26, 26, 26, 0.05);
+$card-box-shadow:    0 1px 1px 0 rgba(0,0,0,0.09), 0 2px 4px 0 rgba(0,0,0,0.12);
+$header-box-shadow:  0 4px 8px -1px rgba(0, 0, 0, 0.12), 0 2px 4px -2px rgba(0, 0, 0, 0.09);
+$modal-box-shadow:   0 2px 2px 0 rgba(0,0,0,0.16), 0 6px 10px 0 rgba(0,0,0,0.24);

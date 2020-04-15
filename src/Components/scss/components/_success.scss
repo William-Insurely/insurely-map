@@ -1,0 +1,23 @@
+.success {
+  text-align: center;
+  color:$green;
+  &--zipcode {
+    font-family: 'Nunito Sans';
+  }
+  &--averageprice, &--popularcompanys{
+    background-color: $green;
+    padding:15px;
+    border-radius: 5px;
+    color: $blue-dark;
+    margin: 0 0 20px 0;
+    // font-family: 'Nunito Sans';
+    font-family: 'HK Grotesk';
+    h2 {
+      margin: 0 0 4px 0;
+    }
+    p {
+      margin: 0;
+      font-family: 'Nunito Sans';
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.suggestions-list{
+  justify-content: space-evenly;
+  margin:10px 0px 30px 0px;
+  padding:0;
+  width:100%;
+  list-style: none;
+  li{
+    padding: 2px 10px;
+    background-color:$green;
+    color:$blue-dark;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family:'HK Grotesk' ;
+  }
+}

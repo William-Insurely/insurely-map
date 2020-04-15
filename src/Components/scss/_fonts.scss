@@ -1,0 +1,21 @@
+
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('../../assets/fonts/NunitoSans-Regular.ttf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('../../assets/fonts/NunitoSans-Bold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+  font-family: 'HK Grotesk';
+  font-weight: bold;
+  src: url('../../assets/fonts/HKGrotesk-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../../assets/fonts/HKGrotesk-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../../assets/fonts/HKGrotesk-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
