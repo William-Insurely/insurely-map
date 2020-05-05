@@ -1,0 +1,18 @@
+// @keyframes open {
+//   0% {
+//     max-height: 15vh;
+//   }
+
+//   100% {
+//     max-height: 95vh;
+//   }
+// }
+
+@keyframes open {
+  from {
+     height: 25vh;
+  }
+  to {
+    height: 95vh;
+  }
+}

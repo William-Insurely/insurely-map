@@ -104,3 +104,15 @@ input[type="number"] {
   justify-content: center;
   align-items: center;
 }
+
+#standard-number-label {
+  color:$green1;
+}
+.MuiFilledInput-root {
+  background-color: white !important;
+  // background-color: #C1ECDC !important;
+}
+
+.MuiFilledInput-underline:after {
+  border-bottom: none !important;
+}

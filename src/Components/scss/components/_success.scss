@@ -1,16 +1,13 @@
 .success {
   text-align: center;
-  color:$green;
+  color:$green1;
   &--zipcode {
     font-family: 'Nunito Sans';
   }
   &--averageprice, &--popularcompanys{
-    background-color: $green;
     padding:15px;
-    border-radius: 5px;
-    color: $blue-dark;
-    margin: 0 0 20px 0;
-    // font-family: 'Nunito Sans';
+    color:$green1;
+    margin: 10% 0 10px 0;
     font-family: 'HK Grotesk';
     h2 {
       margin: 0 0 4px 0;
@@ -19,5 +16,13 @@
       margin: 0;
       font-family: 'Nunito Sans';
     }
+  }
+  &--popularcompanys {
+    background-color: $white2;
+    
+  }
+  &--averageprice {
+    background-color: $white2;
+    border-radius: 5px;
   }
 }

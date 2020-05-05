@@ -5,9 +5,9 @@ import Search from "./Components/search";
 import { filterGeojson } from "./Components/functions/script";
 import Icon from "./assets/icons";
 import "./Components/scss/main.scss";
-// import axios from "axios";
 
 const App = () => {
+
   const [station, setStation] = useState(false);
   const [loading, setLoading] = useState(false);
   const [geojson, setGeojson] = useState(null);
@@ -23,30 +23,30 @@ const App = () => {
     setStation(null);
     setGeojson(null);
     setLoading(true);
-
+    
     setTimeout(() => {
-      const { latitude, longitude, geo, insurelydata, zoom } = filterGeojson(
-        zipcode
-      );
-      console.log(zoom);
+      let getLSdata = JSON.parse(localStorage.getItem('insurelydata'))
 
-      if (insurelydata === null) {
+      if (filterGeojson(getLSdata.postalCode) === null ) {
         setStation(false);
       } else {
-        setStation({ zipcode, latitude, longitude, insurelydata });
+        const { latitude, longitude, geo, zoom } = filterGeojson(getLSdata.postalCode);
+        setStation({ zipcode, latitude, longitude });
         setGeojson(geo);
+        setViewport({
+          width: "100vw",
+          height: "100vh",
+          latitude: latitude,
+          longitude: longitude,
+          zoom: zoom,
+        });
       }
-      setViewport({
-        width: "100vw",
-        height: "100vh",
-        latitude: latitude,
-        longitude: longitude,
-        zoom: zoom,
-      });
+
 
       setLoading(false);
     }, 1000);
   };
+  
 
   return (
     <div className="main-container">

@@ -1,17 +1,24 @@
-.search-container{
+.search-container {
+  box-shadow: $modal-box-shadow;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: $blue-dark;
-  width: 400px;
-  height: 600px;
-  margin:20px;
+  background-color: white;
+  width: 450px;
+  height: 25vh;
+  margin: 20px;
   border-radius: 10px;
   z-index: 10;
-  font-family: 'Nunito Sans';
+  overflow: hidden;
+  transition: all 2.5s ease;
+  animation: open;
 
-    &__loader{
-      width: 100%;
-      height:75%;
-    }
+  &__big {
+    height: 95vh;
+  }
+
+  &__loader {
+    width: 100%;
+    height: 75%;
+  }
 }
