@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Source, Layer } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Search from "./Components/search";
 import { filterGeojson } from "./Components/functions/script";
-import Icon from "./assets/icons";
+// import Icon from "./assets/icons";
 import "./Components/scss/main.scss";
+import { UseDataProvider } from './Components/functions/contextAPI/dataContext'
 
 const App = () => {
-
-  const [station, setStation] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [geojson, setGeojson] = useState(null);
   const [viewport, setViewport] = useState({
     width: "100vw",
@@ -18,39 +16,28 @@ const App = () => {
     longitude: 18.068581,
     zoom: 7,
   });
+  const { insurleyDataAPI } = UseDataProvider() 
 
-  const findstation = (zipcode) => {
-    setStation(null);
-    setGeojson(null);
-    setLoading(true);
-    
-    setTimeout(() => {
-      let getLSdata = JSON.parse(localStorage.getItem('insurelydata'))
-
-      if (filterGeojson(getLSdata.postalCode) === null ) {
-        setStation(false);
-      } else {
-        const { latitude, longitude, geo, zoom } = filterGeojson(getLSdata.postalCode);
-        setStation({ zipcode, latitude, longitude });
-        setGeojson(geo);
-        setViewport({
-          width: "100vw",
-          height: "100vh",
-          latitude: latitude,
-          longitude: longitude,
-          zoom: zoom,
-        });
-      }
-
-
-      setLoading(false);
-    }, 1000);
-  };
   
-
+  useEffect(() => {
+    const { latitude, longitude, geo, zoom } = filterGeojson(insurleyDataAPI.postalCode);
+    setGeojson(geo);
+    setViewport({
+      width: "100vw",
+      height: "100vh",
+      latitude: latitude,
+      longitude: longitude,
+      zoom: zoom,
+    });
+    return () => {
+      return null
+    }
+  }, [insurleyDataAPI])
+  
+  
   return (
     <div className="main-container">
-      <Search findstation={findstation} loading={loading} station={station} />
+      <Search/>
       <ReactMapGL
         mapboxApiAccessToken="pk.eyJ1Ijoid2lsbGlhbWluc3VyZWx5IiwiYSI6ImNrN2xvejhwMzA2eWEzbW1rOG5jbjl4amUifQ.7Gf8x82h2ss94p3u0igG0w"
         mapStyle="mapbox://styles/mapbox/outdoors-v11"
@@ -70,7 +57,7 @@ const App = () => {
           }}
         />
 
-        {station && (
+        {/* {station && (
           <Marker
             value={station.zipcode}
             latitude={station.latitude}
@@ -80,7 +67,7 @@ const App = () => {
               <Icon type="gps-icon" size="26px" color="#152946" />
             )}
           </Marker>
-        )}
+        )} */}
       </ReactMapGL>
     </div>
   );

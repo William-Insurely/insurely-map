@@ -3,32 +3,26 @@ import Success from "./errorOrSuccess/success";
 import Error from "./errorOrSuccess/error";
 import errorhandler from "../functions/errorhandler";
 
+import { UseDataProvider } from "../functions/contextAPI/dataContext";
 
-const OutputData = ({ zipcode, onSubmit }) => {
+const OutputData = ({ onSubmit }) => {
   const [error, setError] = useState(false);
   const [errorMessege, setErrorMessege] = useState(false);
-  const [bigSearch, setbigSearch] = useState(false);
+  let { inputvalue } = UseDataProvider();
+  const { isError, errorMesseges } = errorhandler(inputvalue);
 
-  let localStorageData = JSON.parse(localStorage.getItem("insurelydata"));
-  const { isError, errorMesseges } = errorhandler(zipcode);
+  // useEffect(() => {
+  //   setError(isError);
+  //   setErrorMessege(errorMesseges);
 
-  const toggleSerachSize = () => {
-    setbigSearch(!bigSearch)
-  }
-
-  useEffect(() => {
-    setError(isError);
-    setErrorMessege(errorMesseges);
-
-    return () => {
-      return null
-    }
-  }, [errorMesseges, isError]);
-
+  //   return () => {
+  //     return null;
+  //   };
+  // }, [errorMesseges, isError]);
 
   return (
     <div className="outputdata-container">
-      {error ? <Error errorMessege={errorMessege} /> : <Success data={localStorageData} onSubmit={onSubmit} />}
+      <Success />
     </div>
   );
 };

@@ -1,27 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import OutputData from "./outputdata/index";
 import Button from "./button";
 import Icon from "../assets/icons";
-
-import { saveInsurleyDBtoLocalS } from "./functions/fetch";
+import { UseDataProvider } from '../Components/functions/contextAPI/dataContext';
+import Information from './information'
+import { saveInsurleyDBtoLocalS, findSuggestionsFromApi } from "./functions/fetch";
 
 const useStyles = makeStyles({
   loading: {
     color: "#156258",
   },
   FormControl: {
-    // color: "green",
-    margin: "30px 0 0 0",
+    margin: "10px 0 0 0",
     width: "90%",
     height: "auto",
     backgroundColor: "white",
     border: "2px solid #156258",
-    // border:'none',
     borderRadius: "5px",
-    // Focused: { backgroundColor: "white" },
   },
   root: {
     background: "white",
@@ -29,31 +27,47 @@ const useStyles = makeStyles({
   },
 });
 
-const Search = ({ findstation, loading }) => {
-  const [submitvalue, setSubmitvalue] = useState(null);
+const Search = () => {
   const [formValue, setFormValue] = useState("");
   const [bigSearch, SetBigSearch] = useState(false);
-  const classes = useStyles();
 
-  const onSubmit = (zipcode) => {
-    saveInsurleyDBtoLocalS(zipcode);
-    setSubmitvalue(zipcode);
-    setFormValue(zipcode);
-    findstation(zipcode);
+  const classes = useStyles();
+  let { loading, setLoading ,setInputvalue, inputvalue, setInsurelyDataAPI, setSuggestionsAPI } = UseDataProvider()
+  
+
+  const onSubmit = async (zipcode) => {
     SetBigSearch(true);
+    let newPostalCode 
+    await setLoading(true)
+    await saveInsurleyDBtoLocalS(zipcode).then( (response) => { setInsurelyDataAPI(response.data);newPostalCode = response.data.postalCode });
+    await findSuggestionsFromApi(newPostalCode).then((data) => { setSuggestionsAPI(data)})
+    await setInputvalue(zipcode)
+    await setLoading(false)
+
+    
   };
+
   const keyPress = (e) => {
     if (e.keyCode === 13) {
       onSubmit(formValue);
     } else if (e.keyCode === 8) {
-      setSubmitvalue(null);
+      setInputvalue(null);
     }
   };
-  if (submitvalue && formValue > submitvalue) {
-    setSubmitvalue(null);
+  if (inputvalue && formValue > inputvalue) {
+    setInputvalue(null);
   }
 
-  console.log(bigSearch);
+  
+  useEffect(() => {
+    if(inputvalue){
+      setFormValue(inputvalue)
+    }
+    return () => {
+     return null
+    }
+  }, [inputvalue])
+
   return (
     
       <div
@@ -61,6 +75,7 @@ const Search = ({ findstation, loading }) => {
           bigSearch ? "search-container__big" : null
         }`}
       >
+      <h1 className="search-container__title"> Sök efter postnummer</h1>
         <div className="flex">
           <TextField
             className={classes.FormControl}
@@ -84,14 +99,14 @@ const Search = ({ findstation, loading }) => {
             />
           </div>
         )}
-        {submitvalue && bigSearch && loading !== true ? (
-          <OutputData zipcode={submitvalue} onSubmit={onSubmit} />
+        { inputvalue && bigSearch ? (
+          <OutputData />
         ) : (
           <Button
             className="justify-content"
             onSubmit={onSubmit}
             onSubmitValue={formValue}
-            text="Sök Postnummer"
+            text="Sök"
           />
         )}
         <div
@@ -99,8 +114,10 @@ const Search = ({ findstation, loading }) => {
           className="search--icon"
           onClick={() => SetBigSearch(!bigSearch)}
         >
-          <Icon type="chevron-arrow-up" size="20px" color="#156258" />
+         <Icon type={`${bigSearch ? "chevron-arrow-up": "chevron-arrow-down"}`} size="20px" color="#156258" /> 
         </div>
+        
+        
       </div>
   );
 };

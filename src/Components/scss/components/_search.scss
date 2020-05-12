@@ -5,13 +5,22 @@
   left: 0;
   background-color: white;
   width: 450px;
-  height: 25vh;
+  height: 235px;
+  max-height: 890px;
   margin: 20px;
   border-radius: 10px;
   z-index: 10;
   overflow: hidden;
-  transition: all 2.5s ease;
+  transition: all .5s ease;
   animation: open;
+  color:$green1;
+  font-family: 'Nunito Sans';
+
+  &__title {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 0;
+  }
 
   &__big {
     height: 95vh;

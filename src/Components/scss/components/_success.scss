@@ -1,28 +1,37 @@
 .success {
   text-align: center;
-  color:$green1;
-  &--zipcode {
-    font-family: 'Nunito Sans';
-  }
-  &--averageprice, &--popularcompanys{
-    padding:15px;
-    color:$green1;
-    margin: 10% 0 10px 0;
-    font-family: 'HK Grotesk';
-    h2 {
-      margin: 0 0 4px 0;
-    }
+  color: $green1;
+
+  &--averageprice,
+  &--popularcompanys {
+    padding: 15px;
+    color: $green1;
+    margin: 15px 0 10px 0;
+    font-family: "HK Grotesk";
     p {
-      margin: 0;
-      font-family: 'Nunito Sans';
+      font-family: "Nunito Sans";
+    }
+  }
+  &--zipcode__title {
+    font-family: "Nunito Sans";
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    margin: 10px 0;
+  }
+  &--zipcode__text {
+    h2 {
+      margin: 5px 0 0 0 ;
     }
   }
   &--popularcompanys {
     background-color: $white2;
-    
   }
   &--averageprice {
     background-color: $white2;
     border-radius: 5px;
+    &__title {
+      margin:0 0 2px 0;
+      font-size: 20px;
+    }
   }
 }
