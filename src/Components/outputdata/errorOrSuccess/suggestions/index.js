@@ -1,5 +1,5 @@
 import React from "react";
-import { saveInsurleyDBtoLocalS, findSuggestionsFromApi } from '../../../functions/fetch'
+import { getInsurelyData, findSuggestionsFromApi } from '../../../functions/fetch'
 import { stylingPostaldCode } from '../../../functions/script'
 import { UseDataProvider } from '../../../functions/contextAPI/dataContext'
 
@@ -9,8 +9,8 @@ const Suggestions = ({ suggestions}) => {
   const onClick = async(zipcode) => {
     let newPostalCode 
     await setLoading(true)
-    await saveInsurleyDBtoLocalS(zipcode).then( (response) => { setInsurelyDataAPI(response.data) ;newPostalCode = response.data.postalCode });
-    await findSuggestionsFromApi(newPostalCode).then((data) => { setSuggestionsAPI(data); console.log(data)})
+    await getInsurelyData(zipcode).then( (response) => { setInsurelyDataAPI(response.data) ;newPostalCode = response.data.postalCode });
+    await findSuggestionsFromApi(newPostalCode).then((data) => { setSuggestionsAPI(data)})
     await setInputvalue(zipcode)
     await setLoading(false)
   }

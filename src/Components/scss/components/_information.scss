@@ -31,4 +31,13 @@
     text-align: center;
     margin-bottom: 10%;
   }
+
+  @media only screen and (max-width: $breakpoint) {
+    background: rgba(0, 0, 0, 0.8);
+    &--popup {
+      width: 90%;
+      padding:10px 0;
+      height: auto;
+    }
+  }
 }

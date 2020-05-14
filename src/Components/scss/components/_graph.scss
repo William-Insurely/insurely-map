@@ -9,6 +9,8 @@ $bar-spacing:        20px;
   text-align: left;
   padding:15px 0;
   border-radius: 5px;
+  // margin-top:23px;
+  position: relative;
 }
 
 .chart__bar {
@@ -41,7 +43,7 @@ $bar-spacing:        20px;
   font-weight: 600;
   color: black;
   position: absolute;
-  right:-60px;
+  right:-45px;
 }
 
 

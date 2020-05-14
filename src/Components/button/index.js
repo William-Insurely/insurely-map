@@ -2,18 +2,24 @@ import React from "react";
 import "./style.scss";
 // import { UseDataProvider } from '../../Components/functions/contextAPI/dataContext'
 
-const Button = ({ onSubmit = () => {}, onSubmitValue, text }) => {
-  // let { inputvalue } = UseDataProvider()
+export const Button = ({ onSubmit = () => {}, onSubmitValue, text, className }) => {
+  
   return (
-    <div className="search flex">
-      <button
-        className="search--button"
-        onClick={() => onSubmit(onSubmitValue)}
-      >
+    <div className={className}  >
+      <button onClick={() => onSubmit(onSubmitValue)}>
         {text}
       </button>
     </div>
   );
 };
 
-export default Button;
+
+export const Href = () => {
+  return (
+    <div className='bottom-button'  >
+      <a target="_blank" rel="noopener noreferrer" href="https://app.insurely.se/logga-in">
+        Jämför med din försäkring
+      </a>
+    </div>
+  );
+}

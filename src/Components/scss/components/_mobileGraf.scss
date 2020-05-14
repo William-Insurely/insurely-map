@@ -1,0 +1,21 @@
+.MobileGraf{
+    position: absolute;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0;
+    border-radius: 15px;
+    z-index: 9;
+
+    &--icon {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+    }
+
+    &--graf {
+      width: 100%;
+      margin: 10% 0 0 0;
+    }
+}

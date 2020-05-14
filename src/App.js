@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactMapGL, { Marker, Source, Layer } from "react-map-gl";
+import ReactMapGL, { Source, Layer } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import Search from "./Components/search";
 import { filterGeojson } from "./Components/functions/script";
@@ -10,8 +10,8 @@ import { UseDataProvider } from './Components/functions/contextAPI/dataContext'
 const App = () => {
   const [geojson, setGeojson] = useState(null);
   const [viewport, setViewport] = useState({
-    width: "100vw",
-    height: "100vh",
+    width: "100%",
+    height: "100%",
     latitude: 59.329323,
     longitude: 18.068581,
     zoom: 7,
@@ -20,15 +20,26 @@ const App = () => {
 
   
   useEffect(() => {
-    const { latitude, longitude, geo, zoom } = filterGeojson(insurleyDataAPI.postalCode);
-    setGeojson(geo);
-    setViewport({
-      width: "100vw",
-      height: "100vh",
-      latitude: latitude,
-      longitude: longitude,
-      zoom: zoom,
-    });
+    if(insurleyDataAPI.postalCode){
+      const { latitude, longitude, geo, zoom } = filterGeojson(insurleyDataAPI.postalCode);
+      setGeojson(geo);
+      setViewport({
+        width: "100vw",
+        height: "100vh",
+        latitude: latitude,
+        longitude: longitude,
+        zoom: zoom,
+      });
+    } else {
+      setViewport({
+        width: "100vw",
+        height: "100vh",
+        latitude: 59.329323,
+        longitude: 18.068581,
+        zoom: 7,
+      });
+    }
+
     return () => {
       return null
     }
@@ -57,7 +68,9 @@ const App = () => {
           }}
         />
 
+
         {/* {station && (
+          // Koden för GPS icon av utkommenterad. Kommentera av om ni vill ha med ikoner. 
           <Marker
             value={station.zipcode}
             latitude={station.latitude}

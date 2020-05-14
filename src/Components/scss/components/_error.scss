@@ -1,0 +1,10 @@
+.error {
+  background-color: $red-light;
+  color: $green-dark;
+  margin: 5% auto;
+  padding: 20px 10px;
+  border-radius: 5px;
+  &--icon{
+    margin: 10% auto;
+  }
+}

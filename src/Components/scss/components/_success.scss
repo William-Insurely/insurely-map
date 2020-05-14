@@ -20,7 +20,7 @@
   }
   &--zipcode__text {
     h2 {
-      margin: 5px 0 0 0 ;
+      margin: 5px 0 0 0;
     }
   }
   &--popularcompanys {
@@ -29,8 +29,9 @@
   &--averageprice {
     background-color: $white2;
     border-radius: 5px;
+    position: relative;
     &__title {
-      margin:0 0 2px 0;
+      margin: 0 0 2px 0;
       font-size: 20px;
     }
   }

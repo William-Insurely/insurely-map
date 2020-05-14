@@ -3,11 +3,10 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import OutputData from "./outputdata/index";
-import Button from "./button";
+import { Button } from "./button";
 import Icon from "../assets/icons";
 import { UseDataProvider } from '../Components/functions/contextAPI/dataContext';
-import Information from './information'
-import { saveInsurleyDBtoLocalS, findSuggestionsFromApi } from "./functions/fetch";
+import { getInsurelyData, findSuggestionsFromApi } from "./functions/fetch";
 
 const useStyles = makeStyles({
   loading: {
@@ -39,7 +38,7 @@ const Search = () => {
     SetBigSearch(true);
     let newPostalCode 
     await setLoading(true)
-    await saveInsurleyDBtoLocalS(zipcode).then( (response) => { setInsurelyDataAPI(response.data);newPostalCode = response.data.postalCode });
+    await getInsurelyData(zipcode).then( (response) => { setInsurelyDataAPI(response.data);newPostalCode = response.data.postalCode });
     await findSuggestionsFromApi(newPostalCode).then((data) => { setSuggestionsAPI(data)})
     await setInputvalue(zipcode)
     await setLoading(false)
@@ -75,7 +74,7 @@ const Search = () => {
           bigSearch ? "search-container__big" : null
         }`}
       >
-      <h1 className="search-container__title"> Sök efter postnummer</h1>
+      <h1 className="search-container__title"> Försäkringskartan</h1>
         <div className="flex">
           <TextField
             className={classes.FormControl}
@@ -103,7 +102,7 @@ const Search = () => {
           <OutputData />
         ) : (
           <Button
-            className="justify-content"
+            className="bottom-button justify-content"
             onSubmit={onSubmit}
             onSubmitValue={formValue}
             text="Sök"
